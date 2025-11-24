@@ -3,7 +3,6 @@ import argparse
 import json
 import re
 
-
 class ConfigError(Exception):
     pass
 
