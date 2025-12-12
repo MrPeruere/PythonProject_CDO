@@ -1,17 +1,54 @@
 # БАЗОВЫЕ ТЕСТЫ
 
 # Числа
-echo "42" | python main.py -o output.json && cat output.json
-echo "-15" | python main.py -o output.json && cat output.json
-echo "3.14159" | python main.py -o output.json && cat output.json
+echo "var X 42" | python main.py -o output.json && cat output.json
+echo "var X -15" | python main.py -o output.json && cat output.json
+echo "var X 3.14159" | python main.py -o output.json && cat output.json
 
 # Массивы
-echo "'( 1 2 3 4 5 )" | python main.py -o output.json && cat output.json
-echo "'( 1 '( 2 3 ) 4 )" | python main.py -o output.json && cat output.json
+echo "var ARR '( 1 2 3 4 5 )" | python main.py -o output.json && cat output.json
+echo "var ARR '( 1 '( 2 3 ) 4 )" | python main.py -o output.json && cat output.json
 
 # Константы
-echo -e "var A 10\nvar B 20\n{A + B}" | python main.py -o output.json && cat output.json
+python main.py -o output.json << 'EOF'
+var A 10
+var B 20
+var SUM {A + B}
+EOF
 
-# Функции
-echo -e "var A 5\nvar B 3\n{min(A, B)}" | python main.py -o output.json && cat output.json
-echo -e "var ARR1 '( 1 2 )\nvar ARR2 '( 3 4 )\n{concat(ARR1, ARR2)}" | python main.py -o output.json && cat output.json
+# Функция min
+python main.py -o output.json << 'EOF'
+var A 5
+var B 3
+var MINIMUM {min(A, B)}
+EOF
+
+python main.py -o output.json << 'EOF'
+var X 100
+var Y 50
+var Z 75
+var MINVAL {min(X, Y, Z)}
+EOF
+
+# Функция concat
+python main.py -o output.json << 'EOF'
+var ARR1 '( 1 2 )
+var ARR2 '( 3 4 )
+var MERGED {concat(ARR1, ARR2)}
+EOF
+
+python main.py -o output.json << 'EOF'
+var SKILLS '( 10 15 20 )
+var BUFFS '( 5 10 )
+var ALLBONUSES {concat(SKILLS, BUFFS)}
+EOF
+
+# Комбинированный тест min + concat
+python main.py -o output.json << 'EOF'
+var MAXCONN 100
+var MAXTHREADS 16
+var THREADS {min(MAXCONN, MAXTHREADS)}
+var ARR1 '( 1 2 3 )
+var ARR2 '( 4 5 )
+var COMBINED {concat(ARR1, ARR2)}
+EOF
