@@ -1,0 +1,17 @@
+# БАЗОВЫЕ ТЕСТЫ
+
+# Числа
+echo "42" | python main.py -o output.json && cat output.json
+echo "-15" | python main.py -o output.json && cat output.json
+echo "3.14159" | python main.py -o output.json && cat output.json
+
+# Массивы
+echo "'( 1 2 3 4 5 )" | python main.py -o output.json && cat output.json
+echo "'( 1 '( 2 3 ) 4 )" | python main.py -o output.json && cat output.json
+
+# Константы
+echo -e "var A 10\nvar B 20\n{A + B}" | python main.py -o output.json && cat output.json
+
+# Функции
+echo -e "var A 5\nvar B 3\n{min(A, B)}" | python main.py -o output.json && cat output.json
+echo -e "var ARR1 '( 1 2 )\nvar ARR2 '( 3 4 )\n{concat(ARR1, ARR2)}" | python main.py -o output.json && cat output.json
