@@ -1,0 +1,9 @@
+python main.py -o output.json << 'EOF'
+<!-- Конфигурация веб-сервера -->
+var PORT 8080
+var MAXCONN 100
+var TIMEOUT 30
+var MINTHREADS 4
+var MAXTHREADS 16
+var THREADS {min(MAXCONN, MAXTHREADS)}
+EOF

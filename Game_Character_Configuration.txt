@@ -1,0 +1,9 @@
+python main.py -o output.json << 'EOF'
+<!-- Параметры персонажа -->
+var BASEHEALTH 100
+var BONUSHEALTH 25
+var HEALTH {BASEHEALTH + BONUSHEALTH}
+var SKILLS '( 10 15 20 )
+var BUFFS '( 5 10 )
+var ALLBONUSES {concat(SKILLS, BUFFS)}
+EOF
